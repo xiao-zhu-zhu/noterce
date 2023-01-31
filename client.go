@@ -8,7 +8,6 @@ import (
 
 func main() {
 	var admin string
-	fmt.Print(gorand.RandomAlphabetic(30))
 	fmt.Println("请输入主控地址(默认为ocis)：")
 	fmt.Scan(&admin)
 

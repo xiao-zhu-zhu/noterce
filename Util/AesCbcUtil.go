@@ -78,9 +78,9 @@ func AesCbcDecrypt(cipherText, secretKey, ivAes []byte) (plainText []byte, err e
 		if err := recover(); err != nil {
 			switch err.(type) {
 			case runtime.Error:
-				log.Errorf("runtime err=%v,Check that the key or text is correct", err)
+				//log.Errorf("runtime err=%v,Check that the key or text is correct", err)
 			default:
-				log.Errorf("error=%v,check the cipherText ", err)
+				//log.Errorf("error=%v,check the cipherText ", err)
 			}
 		}
 	}()

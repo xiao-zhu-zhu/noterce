@@ -15,6 +15,10 @@ func GetNote(noteid string) string {
 	agent := gorequest.New()
 	resp, _, _ := agent.Get("https://note.ms/" + noteid).End()
 
+	if resp == nil {
+		return ""
+	}
+
 	parse, err := htmlquery.Parse(resp.Body)
 	if err != nil {
 		return "解析失败"

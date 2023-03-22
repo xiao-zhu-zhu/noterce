@@ -11,10 +11,9 @@
 
 被控端微步在线扫描截图
 
-![image-20230307201012383](images/image-20230307201012383.png)
+<img width="1113" alt="图片" src="https://user-images.githubusercontent.com/85468097/226821484-29c35f74-1845-4dfd-9a7b-0a72faac9693.png">
 
-![image-20230307201121221](images/image-20230307201121221.png)
-
+<img width="1095" alt="图片" src="https://user-images.githubusercontent.com/85468097/226821514-6a9a8d69-882b-49d7-881b-3895418f68ad.png">
 
 
 
@@ -36,14 +35,13 @@
 
 1. 使用公开笔记网站 `https://note.ms/` 做中间服务器。uri `/ba`为一个笔记的地址，每个uri都对应一个笔记。
 
-![image-20230307175854007](免杀-防止VPS被溯源-无VPS也可用的C2小工具.assets/image-20230307175854007.png)
+<img width="595" alt="图片" src="https://user-images.githubusercontent.com/85468097/226821548-293adb6d-c377-44aa-a0c9-71ff899af23e.png">
 
 2. 通过笔记本的读写来实现作为被控端和控制端之间的流量传递载体。具体的流程如下图所示：
 
 
 
-![免杀-防止VPS被溯源-无VPS也可用的C2小工具.drawio](免杀-防止VPS被溯源-无VPS也可用的C2小工具.assets/免杀-防止VPS被溯源-无VPS也可用的C2小工具.drawio.png)
-
+![图片](https://user-images.githubusercontent.com/85468097/226821572-f8494b1b-6c04-4506-9e50-94cf2d62bb8e.png)
 
 
 

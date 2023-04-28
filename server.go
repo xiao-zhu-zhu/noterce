@@ -5,7 +5,7 @@ package main
 import (
 	"bytes"
 	"flag"
-	"fmt"
+	// "fmt"
 	"github.com/lifei6671/gorand"
 	. "hack8-note_rce/Util"
 	"os/exec"

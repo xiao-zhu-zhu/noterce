@@ -52,27 +52,30 @@
 
 被控端 server
 被控端运行以下命令：‍
+```
 ./server --key notekey --admin ocis
+```
 ![图片](https://user-images.githubusercontent.com/85468097/235076901-cd23d80f-2799-440e-bf66-ec21be4223e3.png)
 
 其中有两个参数，为了提高安全性，建议都修改一下：
-
+```
 key：为AES加密的密钥，可自定义密钥，默认密钥为zhu1234554321zhu
 admin：控制的uri地址，默认为ocis
-
+```
 
 控制端 client
 1. 控制端刷新在线主机列表
 username$ ./client
+```
 0:主机名:[penetration]  note地址:[BpLnfgDsc3WD9F3qNfHK6a95jjJkwz]       notekey地址:[zhu1234554321zhu]
 
 1.获取在线主机列表(不一定全)
 2.执行主机命令(需要等待30秒)
 3.更新别控端列表(需等待30秒)
-
+```
 
 2. 控制端执行命令
-
+```
 username$ ./client
 1.获取在线主机列表(不一定全)
 2.执行主机命令(需要等待30秒)
@@ -84,6 +87,8 @@ username$ ./client
 请输入shell命令:whoami
 请等待30秒
 jpass
+```
+
 ![图片](https://user-images.githubusercontent.com/85468097/235076858-840b5831-4638-4e55-9cb0-82fc0628ef85.png)
 
 

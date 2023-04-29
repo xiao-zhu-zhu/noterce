@@ -55,8 +55,7 @@
 ```
 ./server --key notekey --admin ocis
 ```
-![图片](https://user-images.githubusercontent.com/85468097/235076901-cd23d80f-2799-440e-bf66-ec21be4223e3.png)
-
+![图片](https://user-images.githubusercontent.com/85468097/235185425-d179f539-e682-40b8-9221-086c3cb3b67d.png)
 其中有两个参数，为了提高安全性，建议都修改一下：
 ```
 key：为AES加密的密钥，可自定义密钥，默认密钥为zhu1234554321zhu
@@ -89,8 +88,7 @@ username$ ./client
 jpass
 ```
 
-![图片](https://user-images.githubusercontent.com/85468097/235076858-840b5831-4638-4e55-9cb0-82fc0628ef85.png)
-
+![图片](https://user-images.githubusercontent.com/85468097/235185477-ea69159f-615b-44c2-a6d3-bd7e400a69d4.png)
 
 这里可以看到目标主机是与note.ms建立的连接，而不是与控制端直接进行连接的。
 

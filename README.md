@@ -20,11 +20,17 @@
 
 ## 0x02 部署
 
+
+
 ### 部署方式-docker
 
+[noterce前端](https://github.com/xiao-zhu-zhu/noterce-amis)
 启动命令:
 
 ```sh
+curl -LjO https://github.com/xiao-zhu-zhu/noterce/releases/download/1.3/noterce.zip
+unzip noterce.zip
+cd noterce
 docker-compose up -d
 
 #端口默认为8888

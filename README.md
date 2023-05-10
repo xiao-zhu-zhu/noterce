@@ -51,4 +51,4 @@ docker-compose up -d
 <img width="1230" alt="图片" src="https://github.com/xiao-zhu-zhu/noterce/assets/85468097/0ef38e95-6c49-46bf-950a-e1ecd397d990">
 - cs上线
 <img width="1205" alt="图片" src="https://github.com/xiao-zhu-zhu/noterce/assets/85468097/b58dd11f-e3ff-4272-ac9d-5ec9e6f0b2e8">
-![图片](https://github.com/xiao-zhu-zhu/noterce/assets/85468097/5ebfaa95-2bbb-4276-99bb-4c9580cf4b61)
+![图片](https://github.com/xiao-zhu-zhu/noterce/assets/85468097/fab2ebbc-853f-42fe-9d7b-5dc49130a66b)

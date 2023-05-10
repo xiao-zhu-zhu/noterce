@@ -1,6 +1,17 @@
 # noterce
 一种另辟蹊径的免杀执行系统命令的木马,通过https“公开笔记”网站来交互通信交互
 
+# 原理
+1. 使用公开笔记网站https://note.ms做中间服务器。uri /ba为一个笔记的地址，每个uri都对应一个笔记。
+![图片](https://github.com/xiao-zhu-zhu/noterce/assets/85468097/47259cc4-5486-45fd-8340-1ae1cd207d8f)
+
+
+2. 通过笔记本的读写来实现作为被控端和控制端之间的流量传递载体，具体的流程如下图所示：
+![图片](https://github.com/xiao-zhu-zhu/noterce/assets/85468097/a19d6a65-35c3-4d1a-a8ec-2c31cf01d06b)
+
+
+
+
 # 免杀效果
 目前实测可过核晶和火绒
 <img width="1189" alt="图片" src="https://github.com/xiao-zhu-zhu/noterce/assets/85468097/3733e1b2-b383-4cf4-8aa6-687b0a94cfc0">

